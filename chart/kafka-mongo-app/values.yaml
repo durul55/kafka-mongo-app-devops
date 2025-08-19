@@ -1,0 +1,16 @@
+image:
+  repository: docker.io/dsengun/kafka-mongo-app
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+kafka:
+  host: kafka-controller.dev.svc.cluster.local
+  port: 9092
+
+mongodb:
+  host: mongodb.dev.svc.cluster.local
+  port: 27017
+
