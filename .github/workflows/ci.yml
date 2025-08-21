@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'chart/kafka-mongo-app/values.yaml'
 
 jobs:
   docker:
