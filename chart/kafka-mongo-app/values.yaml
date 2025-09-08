@@ -1,6 +1,6 @@
 image:
   repository: docker.io/dsengun/kafka-mongo-app
-  tag: 9a2759a1e09e40decd3ec5a989f9d3997788b870
+  tag: db3eec0aa1d75d583be8772e85a39b8e1bde9b51
 
 service:
   type: ClusterIP
