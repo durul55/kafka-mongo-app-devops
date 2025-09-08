@@ -12,12 +12,11 @@ kafka:
   listeners: PLAINTEXT://:9092
   advertisedListeners: PLAINTEXT://kafka-controller-headless.dev.svc.cluster.local:9092
   replicas: 3
+  auth:
+    enabled: false   # authentication dev/test için kapalı
 
 mongodb:
   host: mongodb.dev.svc.cluster.local
   port: 27017
   username: root
   password: rootpassword
-
-
-
