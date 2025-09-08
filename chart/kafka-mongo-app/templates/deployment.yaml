@@ -16,5 +16,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 80
+            - containerPort: 5000
+          env:
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}"
+            - name: MONGO_URI
+              value: "mongodb://{{ .Values.mongodb.host }}:{{ .Values.mongodb.port }}"
+
 
