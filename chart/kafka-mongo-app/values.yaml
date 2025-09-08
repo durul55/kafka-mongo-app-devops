@@ -9,11 +9,8 @@ service:
 kafka:
   host: kafka-controller-headless.dev.svc.cluster.local
   port: 9092
-  listeners: PLAINTEXT://:9092
-  advertisedListeners: PLAINTEXT://kafka-controller-headless.dev.svc.cluster.local:9092
-  replicas: 3
   auth:
-    enabled: false          # SASL auth dev/test için kapalı
+    enabled: false          # SASL dev/test için kapalı
     clientProtocol: plaintext
     interBrokerProtocol: plaintext
 
