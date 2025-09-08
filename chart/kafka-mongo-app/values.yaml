@@ -7,11 +7,8 @@ service:
   port: 80
 
 kafka:
-  host: kafka.dev.svc.cluster.local
+  host: kafka-controller-headless.dev.svc.cluster.local
   port: 9092
-  # Bitnami Kafka chart için büyük harf PLAINTEXT gerekiyor
-  listeners: PLAINTEXT://:9092
-  advertisedListeners: PLAINTEXT://kafka.dev.svc.cluster.local:9092
   replicas: 3
 
 mongodb:
