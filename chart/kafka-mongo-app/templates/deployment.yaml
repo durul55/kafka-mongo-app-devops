@@ -19,12 +19,7 @@ spec:
           ports:
             - containerPort: 5000
           env:
-            # Kafka bağlantısı
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: "kafka:9092"
-            # Mongo bağlantısı (username & password dahil)
+              value: "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}"
             - name: MONGO_URI
-              value: "mongodb://root:rootpassword@{{ .Values.mongodb.host }}:{{ .Values.mongodb.port }}"
-
-
-
+              value: "mongodb://{{ .Values.mongodb.username }}:{{ .Values.mongodb.password }}@{{ .Values.mongodb.host }}:{{ .Values.mongodb.port }}"
