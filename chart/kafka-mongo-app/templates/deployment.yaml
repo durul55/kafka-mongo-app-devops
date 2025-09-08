@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
+  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -18,9 +19,12 @@ spec:
           ports:
             - containerPort: 5000
           env:
+            # Kafka bağlantısı
             - name: KAFKA_BOOTSTRAP_SERVERS
-              value: "{{ .Values.kafka.host }}:{{ .Values.kafka.port }}"
+              value: "kafka:9092"
+            # Mongo bağlantısı (username & password dahil)
             - name: MONGO_URI
-              value: "mongodb://{{ .Values.mongodb.host }}:{{ .Values.mongodb.port }}"
+              value: "mongodb://root:rootpassword@{{ .Values.mongodb.host }}:{{ .Values.mongodb.port }}"
+
 
 
