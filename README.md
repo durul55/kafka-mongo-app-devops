@@ -54,7 +54,7 @@ kubectl apply -f manifests/application.yaml
 
 ---
 
-## 🌐 Uygulama Kullanımı
+## 🌐 Uygulama Kullanımı;
 
 Port-forward ile erişim:
 ```bash
