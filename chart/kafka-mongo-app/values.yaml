@@ -9,8 +9,16 @@ service:
 kafka:
   host: kafka.dev.svc.cluster.local
   port: 9092
+  listeners:
+    plain: INTERNAL://0.0.0.0:9092
+  advertisedListeners:
+    plain: kafka.dev.svc.cluster.local:9092
+  replicas: 3
 
 mongodb:
   host: mongodb.dev.svc.cluster.local
   port: 27017
+  username: root
+  password: rootpassword
+
 
