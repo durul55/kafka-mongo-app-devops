@@ -1,16 +1,16 @@
 image:
   repository: docker.io/dsengun/kafka-mongo-app
-  tag: c5a2535f1d5f2c70b92348007f01e771f4981db4
+  tag: 93969b1d92ccc5a9715c3db3f1d5081ee3f3c9e3
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5000   # Flask uygulaması 5000 portunda çalışıyor
 
 kafka:
   host: kafka-controller-headless.dev.svc.cluster.local
   port: 9092
   auth:
-    enabled: false          # SASL dev/test için kapalı
+    enabled: false
     clientProtocol: plaintext
     interBrokerProtocol: plaintext
 
@@ -19,3 +19,4 @@ mongodb:
   port: 27017
   username: root
   password: rootpassword
+
