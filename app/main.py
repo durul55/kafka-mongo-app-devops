@@ -5,7 +5,7 @@ import threading
 import json
 import os
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 # Kafka ve MongoDB ayarları
 KAFKA_TOPIC = 'my_topic'
@@ -17,7 +17,8 @@ MONGO_COLLECTION = 'mycollection'
 # Kafka Producer
 producer = KafkaProducer(
     bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+    value_serializer=lambda v: json.dumps(v).encode('utf-8'),
+    security_protocol='PLAINTEXT'  # Bu satırı ekleyin!
 )
 
 # MongoDB Client
@@ -31,7 +32,8 @@ def consume_and_store():
         bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
         auto_offset_reset='earliest',
         group_id='my-group',
-        value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+        value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+        security_protocol='PLAINTEXT'  # Bu satırı ekleyin!
     )
     for msg in consumer:
         print(f"Consumed message: {msg.value}")
@@ -54,5 +56,5 @@ def publish():
 
     return jsonify({'message': f'Value \"{value}\" sent to Kafka'})
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(host='0.0.0.0', port=5000)
