@@ -5,12 +5,18 @@ import threading
 import json
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)  
 
 # Kafka ve MongoDB ayarları
 KAFKA_TOPIC = 'my_topic'
-KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'kafka.dev.svc.cluster.local:9092').split(',')
-MONGO_URI = os.getenv('MONGO_URI', 'mongodb://mongodb.dev.svc.cluster.local:27017')
+KAFKA_BOOTSTRAP_SERVERS = os.getenv(
+    'KAFKA_BOOTSTRAP_SERVERS',
+    'kafka.dev.svc.cluster.local:9092'
+).split(',')
+MONGO_URI = os.getenv(
+    'MONGO_URI',
+    'mongodb://mongodb.dev.svc.cluster.local:27017'
+)
 MONGO_DB = 'mydatabase'
 MONGO_COLLECTION = 'mycollection'
 
@@ -18,7 +24,7 @@ MONGO_COLLECTION = 'mycollection'
 producer = KafkaProducer(
     bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
     value_serializer=lambda v: json.dumps(v).encode('utf-8'),
-    security_protocol='PLAINTEXT'  # Bu satırı ekleyin!
+    security_protocol='PLAINTEXT'
 )
 
 # MongoDB Client
@@ -33,12 +39,13 @@ def consume_and_store():
         auto_offset_reset='earliest',
         group_id='my-group',
         value_deserializer=lambda m: json.loads(m.decode('utf-8')),
-        security_protocol='PLAINTEXT'  # Bu satırı ekleyin!
+        security_protocol='PLAINTEXT'
     )
     for msg in consumer:
         print(f"Consumed message: {msg.value}")
         mongo_collection.insert_one(msg.value)
 
+# Thread başlatma
 threading.Thread(target=consume_and_store, daemon=True).start()
 
 @app.route('/publish', methods=['GET', 'POST'])
@@ -56,5 +63,6 @@ def publish():
 
     return jsonify({'message': f'Value \"{value}\" sent to Kafka'})
 
-if _name_ == '_main_':
+# ✅ doğru main check
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
