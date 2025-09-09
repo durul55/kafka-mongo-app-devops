@@ -7,7 +7,7 @@ service:
   port: 80
 
 kafka:
-  host: kafka-controller.dev.svc.cluster.local  
+  host: kafka.dev.svc.cluster.local
   port: 9092
   auth:
     enabled: false
