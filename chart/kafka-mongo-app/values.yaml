@@ -1,36 +1,19 @@
 image:
   repository: docker.io/dsengun/kafka-mongo-app
-  tag: 05e055f5f3cabf85accdc59e3e7e17f2d55433ea
+  tag: d9768f6b9ae08e0b62b13c3163eec8453a6c7ba5
 
 service:
   type: ClusterIP
   port: 80
 
 kafka:
-  # Bitnami Kafka chart ayarları
+  host: kafka-controller.dev.svc.cluster.local  
+  port: 9092
   auth:
-    enabled: false          # SASL kapalı
-  listeners:
-    client:
-      name: CLIENT
-      port: 9092
-      tls: false
-    interbroker:
-      name: INTERNAL
-      port: 9093
-      tls: false
-    controller:
-      name: CONTROLLER
-      port: 9094
-      tls: false
-  advertisedListeners:
-    client: PLAINTEXT://kafka-controller.dev.svc.cluster.local:9092
-  interBrokerListenerName: INTERNAL
+    enabled: false
 
-mongo:
+mongodb:
   host: mongodb.dev.svc.cluster.local
   port: 27017
   username: root
   password: rootpassword
-  database: mydb
-
