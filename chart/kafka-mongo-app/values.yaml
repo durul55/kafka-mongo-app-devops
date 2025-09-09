@@ -7,12 +7,10 @@ service:
   port: 80
 
 kafka:
-  host: kafka.dev.svc.cluster.local   # ClusterIP servisi kullanıyoruz
-  port: 9092                          # 9092 portu
+  host: kafka-controller.dev.svc.cluster.local  
+  port: 9092
   auth:
-    enabled: false                    # SASL dev/test için kapalı
-    clientProtocol: plaintext
-    interBrokerProtocol: plaintext
+    enabled: false
 
 mongodb:
   host: mongodb.dev.svc.cluster.local
