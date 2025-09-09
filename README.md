@@ -9,7 +9,7 @@ Bu proje, **Flask tabanlı bir web servisi** üzerinden gelen HTTP isteklerini:
 
 ---
 
-## 📂 Proje Yapısı
+## 📂 Proje Yapısı;
 
 ```
 kafka-mongo-app-devops/
