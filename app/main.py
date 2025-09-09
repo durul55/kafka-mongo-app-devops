@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Kafka ve MongoDB ayarları
 KAFKA_TOPIC = 'my_topic'
-KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'kafka-controller-headless.dev.svc.cluster.local:9092').split(',')
+KAFKA_BOOTSTRAP_SERVERS = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'kafka.dev.svc.cluster.local:9092').split(',')
 MONGO_URI = os.getenv('MONGO_URI', 'mongodb://mongodb.dev.svc.cluster.local:27017')
 MONGO_DB = 'mydatabase'
 MONGO_COLLECTION = 'mycollection'
