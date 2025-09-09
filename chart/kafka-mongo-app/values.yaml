@@ -7,13 +7,30 @@ service:
   port: 80
 
 kafka:
-  host: kafka-controller.dev.svc.cluster.local  
-  port: 9092
+  # Bitnami Kafka chart ayarları
   auth:
-    enabled: false
+    enabled: false          # SASL kapalı
+  listeners:
+    client:
+      name: CLIENT
+      port: 9092
+      tls: false
+    interbroker:
+      name: INTERNAL
+      port: 9093
+      tls: false
+    controller:
+      name: CONTROLLER
+      port: 9094
+      tls: false
+  advertisedListeners:
+    client: PLAINTEXT://kafka-controller.dev.svc.cluster.local:9092
+  interBrokerListenerName: INTERNAL
 
-mongodb:
+mongo:
   host: mongodb.dev.svc.cluster.local
   port: 27017
   username: root
   password: rootpassword
+  database: mydb
+
